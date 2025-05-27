@@ -28,7 +28,7 @@ jobs:
         run: npm run test:cov
 
       - name: Build Package
-        run: npm pack ./libs/domain
+        run: npm pack .
 
       - name: Rename Package
         run: mv bank_domain-1.0.0.tgz bank_domain_viveros.tgz
