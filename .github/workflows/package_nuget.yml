@@ -31,7 +31,7 @@ jobs:
         run: npm pack ./libs/domain
 
       - name: Rename Package
-        run: mv bank_domain-1.0.0.tgz bank_domain_viveros.tgz
+        run: mv bank_domain_viveros-1.0.0.tgz bank_domain_viveros.tgz
 
       # Simulated publish to GitHub nuget Registry
       - name: Publish Package
