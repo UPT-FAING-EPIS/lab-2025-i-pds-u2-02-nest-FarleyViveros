@@ -33,7 +33,7 @@ jobs:
       - name: Rename Package
         run: mv bank_domain-1.0.0.tgz bank_domain_viveros.tgz
 
-      # Simulated publish to GitHub Nuget Registry
+      # Simulated publish to GitHub nuget Registry
       - name: Publish Package
         run: npm publish ./bank_domain_viveros.tgz --access=public
         env:
