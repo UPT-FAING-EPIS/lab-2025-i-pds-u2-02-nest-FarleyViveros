@@ -1,0 +1,40 @@
+name: Package Nuget Module
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test-and-package:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: notifications
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Tests
+        run: npm run test:cov
+
+      - name: Build Package
+        run: npm pack ./libs/domain
+
+      - name: Rename Package
+        run: mv bank_domain-1.0.0.tgz bank_domain_viveros.tgz
+
+      # Simulated publish to GitHub Nuget Registry
+      - name: Publish Package
+        run: npm publish ./bank_domain_viveros.tgz --access=public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
